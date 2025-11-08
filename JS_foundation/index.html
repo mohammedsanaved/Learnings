@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Check Debouncing</h2>
+    <input type="text" onkeyup="newChangesDebounce()" />
+    <button onclick="newThrottle()">Fire Throttle</button>
+    <button onclick="getData()">Fire</button>
+    <br />
+
+    <input type="number" placeholder="Enter a first number" id="num1" />
+    <input type="number" placeholder="Enter a second number" id="num2" />
+    <button type="submit" id="submitAdd" onclick="memoizedAdd()">Submit</button>
+    <p id="sumResult">AutoSave after Delay</p>
+    <input
+      type="text"
+      name="autoSave"
+      id="autoSave"
+      onchange="debounce(addtoLocalStorage, 1000)()"
+      placeholder="Auto Save Text"
+    />
+
+    <script src="debounce.js"></script>
+    <script src="memo.js"></script>
+    <script src="buildInMethods.js"></script>
+    <script src="debounceThrottle.js"></script>
+  </body>
+</html>
