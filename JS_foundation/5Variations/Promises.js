@@ -105,7 +105,6 @@ function fetchWithRetry(promiseFn, maxRetries = 3) {
           }
         });
     };
-
     // Kick off the first attempt
     attempt();
   });

@@ -41,3 +41,33 @@ function maxSubarraySum(arr, k) {
 }
 
 console.log(maxSubarraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
+
+// Two Pointers
+
+//Pseudocode
+// Note: This pattern is often used with sorted arrays or linked lists.
+// 1. Initialize left and right pointers at start of array
+// 2. Loop until right pointer reaches end of array:
+//    - If arr[right] meets condition, move right pointer forward
+//    - If arr[right] does not meet condition, move left pointer forward
+// 3. Return result based on pointers' positions
+
+function twoSumPointer(arr, target) {
+  let sorted = arr.slice().sort((a, b) => a - b);
+
+  let start = 0;
+  let end = sorted.length - 1;
+
+  while (start < end) {
+    let sum = sorted[start] + sorted[end];
+    if (sum == target) {
+      return [sorted[start], sorted[end]];
+    } else if (sum < target) {
+      start++;
+    } else {
+      end--;
+    }
+  }
+  return [];
+}
+console.log(twoSumPointer([1, 2, 3, 4, 5], 9));
