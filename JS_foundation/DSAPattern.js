@@ -41,3 +41,23 @@ function maxSubarraySum(arr, k) {
 }
 
 console.log(maxSubarraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
+
+// Two Pointer
+function twoSumPointers(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    let sum = arr[left] + arr[right];
+    if (sum === target) {
+      return [left, right];
+    }
+
+    if (sum < target) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+}
+console.log(twoSumPointers([1, 2, 3, 4, 6], 6)); // Output: [1, 3]

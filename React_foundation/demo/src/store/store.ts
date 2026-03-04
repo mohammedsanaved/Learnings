@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { dummyAPI } from '../pages/dummyAPI';
-import { itemSlice } from './slices/itemSlices';
+import itemsSlice from './slices/itemSlices';
 
 export const store = configureStore({
   reducer: {
     // Add your reducers here
     [dummyAPI.reducerPath]: dummyAPI.reducer,
-    items: itemSlice.reducer,
+    items: itemsSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(dummyAPI.middleware),

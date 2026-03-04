@@ -1,14 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { selectById } from '../store/slices/itemSlices';
 
 // import { useGetItemByIdQuery } from '../pages/dummyAPI';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const item = useSelector((state: any) =>
-    state.items.items.find((itm: any) => itm.id === Number(id))
-  );
+  // const item = useSelector((state: any) =>
+  //   state.items.items.find((itm: any) => itm.id === Number(id))
+  // );
+  // const item = useSelector((state: any) => state.items.items[id]) || {};
+  const item = useSelector((state) => selectById(state, id));
   console.log(item, '------------item');
   //   const { data, error, isLoading } = useGetItemByIdQuery(id);
 

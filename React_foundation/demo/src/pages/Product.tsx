@@ -2,19 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetItemsQuery } from '../pages/dummyAPI';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '../store/store';
+// import type { RootState } from '../store/store';
+import { selectAll } from '../store/slices/itemSlices';
 
 const Product = () => {
   const { data, error, isLoading } = useGetItemsQuery();
+  console.log(data, '-----------------------data');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'items/itemAdded', payload: data });
+    // Only dispatch if data is not null/undefined
+    if (data) {
+      dispatch({ type: 'items/itemAdded', payload: data });
+    }
   }, [dispatch, data]);
-  const { items: dataFromStore } = useSelector(
-    (state: RootState) => state.items
-  );
-  console.log(dataFromStore, '-------Data from store');
+  // const dataFromStore = useSelector((state: RootState) => state.items.items);
+  const items = useSelector(selectAll);
+
+  // console.log(dataFromStore, '-------Data from store');
+  // const items = (dataFromStore && Object.values(dataFromStore)) || [];
+  // const items = (itemsStore && Object.values(itemsStore)) || [];
+  // const items = itemsStore || [];
 
   const [pages, setPages] = useState(1);
 
@@ -25,8 +33,8 @@ const Product = () => {
   return (
     <div className='h-screen mx-auto'>
       <h1 className='text-3xl font-bold underline'>Product List</h1>
-      {dataFromStore &&
-        dataFromStore.map((item: any) => (
+      {items &&
+        items.map((item: any) => (
           <li key={item.id} className='my-4'>
             <div className='flex items-center space-x-4'>
               <p>{item.id}</p>
