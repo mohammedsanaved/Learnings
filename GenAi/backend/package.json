@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ai-sdk/groq": "^3.0.29",
+    "ai": "^6.0.116",
+    "dotenv": "^17.3.1",
+    "groq-sdk": "^0.37.0",
+    "openai": "^6.27.0"
+  }
+}
