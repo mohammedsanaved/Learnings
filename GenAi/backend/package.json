@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "server": "nodemon server.js"
   },
   "type": "module",
   "keywords": [],
@@ -13,8 +14,14 @@
   "dependencies": {
     "@ai-sdk/groq": "^3.0.29",
     "ai": "^6.0.116",
+    "axios": "^1.13.6",
+    "cors": "^2.8.6",
     "dotenv": "^17.3.1",
+    "express": "^5.2.1",
     "groq-sdk": "^0.37.0",
     "openai": "^6.27.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
