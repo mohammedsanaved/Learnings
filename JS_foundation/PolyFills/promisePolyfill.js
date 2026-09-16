@@ -67,3 +67,28 @@ Promise.MySellted = function (promises) {
 Promise.MySellted([p1, p2, p3]).then((res) => {
   console.log(res); // [{ status: 'fulfilled', value: 1 }, { status: 'fulfilled', value: 2 }, { status: 'fulfilled', value: 3 }]
 });
+
+Promise.MyRace = function (promises) {
+  return new Promise((resolve, reject) => {
+    if (!Array.isArray(promises)) {
+      return reject(new TypeError('Argument must be an array'));
+    }
+    if (promises.length === 0) {
+      return resolve([]);
+    }
+    promises.forEach((promise) => {
+      Promise.resolve(promise).then(resolve).catch(reject);
+    });
+  });
+};
+
+Promise.MyRaceV2 = function (promises) {
+  return new Promise((resolve, reject) => {
+    if (!Array.isArray(promises)) {
+      return reject(new TypeError('Argument must be an array'));
+    }
+    promises.forEach((promise) => {
+      Promise.resolve(promise).then(resolve, reject);
+    });
+  });
+};

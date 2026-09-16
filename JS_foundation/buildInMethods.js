@@ -5,21 +5,43 @@
 // flat
 // memoization
 
-Array.prototype.myFlat = function (depth) {
+Array.prototype.myFlat = function (depth = 1) {
   const result = [];
-  const arr = this;
-  function flattern(arr, depth) {
-    arr.forEach((item) => {
+
+  function flatten(arr, depth) {
+    for (let i = 0; i < arr.length; i++) {
+      if (!(i in arr)) continue;
+
+      const item = arr[i];
+
       if (depth > 0 && Array.isArray(item)) {
-        flattern(item, depth - 1);
+        flatten(item, depth - 1);
       } else {
         result.push(item);
       }
-    });
+    }
   }
-  flattern(arr, depth);
+
+  flatten(this, depth);
+
   return result;
 };
+// Array.prototype.myFlat = function (depth) {
+//   const result = [];
+//   const arr = this;
+//   function flattern(arr, depth) {
+//     for (let i = 0; i < arr.length; i++) {
+//       const item = arr[i];
+//       if (depth > 0 && Array.isArray(item)) {
+//         flattern(item, depth - 1);
+//       } else {
+//         result.push(item);
+//       }
+//     }
+//   }
+//   flattern(arr, depth);
+//   return result;
+// };
 
 Array.prototype.myReduce = function (callback, initialValue) {
   if (typeof callback !== 'function') {
@@ -68,11 +90,23 @@ function memo(func) {
     if (cache[key]) {
       return cache[key];
     }
-    const result = func.apply(thiis, args);
+    const result = func.apply(this, args);
     cache[key] = result;
     return result;
   };
 }
+// function memo(func) {
+//   let cache = {};
+//   return function (...args) {
+//     const key = JSON.stringify(args);
+//     if (key in cache) {
+//       return cache[key];
+//     }
+//     const result = func.apply(this, args);
+//     cache[key] = result;
+//     return result;
+//   };
+// }
 
 const arr = [1, 2, [3, 4, [5, 6]]];
 console.log(arr.myFlat(2), 'myFlat');

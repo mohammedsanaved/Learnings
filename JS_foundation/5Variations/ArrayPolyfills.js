@@ -1,7 +1,7 @@
 Array.prototype.customMap = function (callback, thisArg) {
   if (this == null) {
     throw new TypeError(
-      'Array.prototype.customMap called on null or undefined'
+      'Array.prototype.customMap called on null or undefined',
     );
   }
   if (typeof callback !== 'function') {
@@ -13,9 +13,26 @@ Array.prototype.customMap = function (callback, thisArg) {
   }
   return resultArray;
 };
+
+// Array.prototype.customMapForEach = function (callback, thisArg) {
+//   if (this == null) {
+//     throw new TypeError(
+//       'Array.prototype.customMapForEach called on null or undefined',
+//     );
+//   }
+//   if (typeof callback !== 'function') {
+//     throw new TypeError(callback + ' is not a function');
+//   }
+//   const resultArray = new Array(this.length);
+//   this.forEach((value, index, array) => {
+//     resultArray[index] = callback.call(thisArg, value, index, array);
+//   });
+//   return resultArray;
+// };
 // Add 1 to each number
 const userIds = [101, 202, 303, 404, 505];
-// console.log(userIds.customMap((id) => id + 1));
+console.log(userIds.customMap((id) => id + 1));
+// console.log(userIds.);
 
 // Convert list of objects to names
 const people = [
@@ -53,7 +70,7 @@ const asyncTask = (value) => {
   });
 };
 let nameVal = Promise.all(fruits.customMap(asyncTask)).then((res) =>
-  console.log(res)
+  console.log(res),
 );
 
 // console.log(nameVal);
@@ -65,6 +82,11 @@ Array.prototype.customFilter = function (callback) {
   }
   let result = [];
   let arr = this;
+  if (arr == null) {
+    throw new TypeError(
+      'Array.prototype.customFilter called on null or undefined',
+    );
+  }
   for (let i = 0; i < arr.length; i++) {
     let val = callback(arr[i], i, arr);
     if (val) {
@@ -73,6 +95,32 @@ Array.prototype.customFilter = function (callback) {
   }
   return result;
 };
+
+// Array.prototype.customFilter = function (callback, thisArg) {
+//   if (this == null) {
+//     throw new TypeError(
+//       'Array.prototype.customFilter called on null or undefined'
+//     );
+//   }
+
+//   if (typeof callback !== 'function') {
+//     throw new TypeError(`${callback} is not a function`);
+//   }
+
+//   const result = [];
+
+//   for (let i = 0; i < this.length; i++) {
+//     if (i in this) {
+//       const value = this[i];
+
+//       if (callback.call(thisArg, value, i, this)) {
+//         result.push(value);
+//       }
+//     }
+//   }
+
+//   return result;
+// };
 
 // Filter active users
 const userData = [
@@ -119,6 +167,42 @@ Array.prototype.customReduce = function (callback, initialValue) {
   }
   return acc;
 };
+// Array.prototype.customReduce = function (callback, initialValue) {
+//   if (this == null) {
+//     throw new TypeError(
+//       'Array.prototype.customReduce called on null or undefined'
+//     );
+//   }
+
+//   if (typeof callback !== 'function') {
+//     throw new TypeError(`${callback} is not a function`);
+//   }
+
+//   const hasInitialValue = arguments.length > 1;
+
+//   if (!hasInitialValue && this.length === 0) {
+//     throw new TypeError('Reduce of empty array with no initial value');
+//   }
+
+//   let acc;
+//   let startIndex;
+
+//   if (hasInitialValue) {
+//     acc = initialValue;
+//     startIndex = 0;
+//   } else {
+//     acc = this[0];
+//     startIndex = 1;
+//   }
+
+//   for (let i = startIndex; i < this.length; i++) {
+//     if (i in this) {
+//       acc = callback(acc, this[i], i, this);
+//     }
+//   }
+
+//   return acc;
+// };
 
 // Sum numbers
 const numbersToSum = [5, 10, 15, 20];
@@ -132,8 +216,8 @@ console.log(
       ...acc,
       [cur]: (acc[cur] || 0) + 1,
     }),
-    {}
-  )
+    {},
+  ),
 );
 
 // Flatten array
