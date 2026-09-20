@@ -1,0 +1,28 @@
+# docker-compose.yml
+services:
+  db:
+    image: postgres:16
+    container_name: pg-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: sanavedn77
+      POSTGRES_DB: mydb
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: node-app
+    restart: unless-stopped
+    depends_on:
+      - db
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+
+volumes:
+  pgdata:
