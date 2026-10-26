@@ -26,6 +26,21 @@ Array.prototype.myFlat = function (depth = 1) {
 
   return result;
 };
+
+Array.prototype.myFlat = function (depth = 1) {
+  const result = [];
+  for (let index = 0; index < array.length; index++) {
+    if(!(index in array)) continue;
+    const element = array[index];
+    if(depth > 0 && Array.isArray(element)) {
+      flatten(element, depth -1);
+    } else {
+      result.push(element)
+    }
+  }
+  flatten(this, depth)
+  return result;
+}
 // Array.prototype.myFlat = function (depth) {
 //   const result = [];
 //   const arr = this;

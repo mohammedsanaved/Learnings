@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAll } from '../store/slices/itemSlices';
 
 const Product = () => {
-  const { data, error, isLoading } = useGetItemsQuery();
+  const { data, error, isLoading, } = useGetItemsQuery();
   console.log(data, '-----------------------data');
   const dispatch = useDispatch();
 

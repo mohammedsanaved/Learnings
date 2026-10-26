@@ -16,7 +16,7 @@ function myPromiseAll(promises) {
   }
 
   const promisesArray = Array.from(promises);
-  console.log(promisesArray, '----------------------PromisesArray');
+  // console.log(promisesArray, '----------------------PromisesArray');
   const total = promisesArray.length;
 
   return new Promise((resolve, reject) => {
